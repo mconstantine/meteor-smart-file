@@ -114,6 +114,7 @@ if (Meteor.isClient) {
       };
 
       reader.readAsArrayBuffer(file);
+      return this;
     },
 
     upload: function (method, callback) {
@@ -150,10 +151,11 @@ if (Meteor.isClient) {
             }
           });
         }
-        else callback && callback();
+        else callback && callback(self);
       };
 
       uploadChunk();
+      return this;
     },
 
     download: function (callback) {
@@ -203,11 +205,12 @@ if (Meteor.isClient) {
                   data: self.data
                 }
               });
-              callback && callback();
+              callback && callback(self);
             }
           };
 
           downloadChunk();
+          return this;
         }
       });
     },
